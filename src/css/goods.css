@@ -1,0 +1,79 @@
+h1,h2,h3,h4,h5,h6{
+    font-weight:normal;
+}
+#wrapper{
+	width: 100%;
+	position:relative;
+	overflow: hidden;
+	padding-bottom:3%;
+}
+ #scroller {
+	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 100%;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+} 
+.prod{
+	list-style: none;
+	width:88%;
+	margin:0 auto;
+	overflow: hidden;
+}
+.prod li{
+	width:2.47rem;
+	height:2.47rem;
+	float:left;
+	margin-right:11%;
+	margin-bottom: 1.4rem;
+}
+.prod li:nth-child(even){
+	margin-right:0;
+}
+.prod li div{
+	width:100%;
+	height:100%;
+}
+.prod li div img{
+	width:100%;
+	height:100%;
+}
+.prod li h3{
+	width:100%;
+	text-align:center;
+	margin:.15rem 0;
+	font-size:.3rem;
+	color:#3a3a3a;
+	text-align: center;
+	float:left;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.prod li p{
+	width:100%;
+	font-size: .3rem;
+	float:left;
+}
+.prod li p span{
+	float:left;
+	color:red;
+}
+.prod li p b{
+	float:right;
+	font-weight: 100;
+	text-decoration: line-through;
+}

@@ -1,0 +1,158 @@
+*{margin:0;padding:0;}
+html,body{
+    height:100%;
+    font-size: 100px;
+    font-family: '微软雅黑';
+    overflow: hidden;
+}
+.detailed{
+	width:100%;
+    height:.87rem;
+    font-size: .35rem;
+    background: orange;
+    color:#fff;
+    text-align: center;
+    line-height: .87rem;
+    position: relative;
+    left:0;
+    top:0;
+    z-index: 99;
+}
+.detailedtop{
+    width:100%;
+    height:.04rem;
+    background: #d2302d;
+}
+.zmdi-hc-fw{
+	float:left;
+	color:#fff;
+}
+.left{
+    display: block;
+    position: absolute;
+    width:.4rem;
+    height:.4rem;
+    background-size: contain;
+    left:.24rem;
+    top:.29rem;
+}
+#mySwiper{
+    width:100%;
+    position:relative;
+    left:0;
+    background:#fff;
+    overflow: hidden;  
+}
+.swiper-slide{
+    height:4rem;
+}
+ img{
+    width:100%;
+    height:100%;
+} 
+.swiper-pagination-bullets{
+    font-size: .05rem;
+    height:.3rem;
+}
+#mySwiper .swiper-pagination-bullet{
+     width:.2rem;
+     height:.2rem;
+     text-align:center;
+     line-height:.3rem;
+     font-size: .05rem;
+     color:white;
+     opacity:1;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
+	right:-44%;
+}
+.instroduce{
+    margin-bottom: 45%;
+    padding-left:.25rem;
+    background:#fff;
+    overflow: hidden; 
+}
+.caption{
+    font-size: .28rem;
+    width:100%;
+    margin-bottom: .25rem;
+    text-align: center;
+}
+.price span{
+    font-size: .26rem;
+    color:red;
+    float:left;
+}
+.price{
+    width:100%;
+    overflow: hidden;
+    margin-bottom: .25rem;
+}
+.price b{
+    font-size: .26rem;
+    float:left;
+    text-decoration: line-through;
+    margin-left: .35rem;
+}
+.pay{
+    width:100%;
+    font-size: .28rem;
+}
+.watch{
+    position: absolute;
+    bottom:1rem;
+    left:0;
+    text-align: center;
+    line-height:.7rem;
+    color:#828282;
+    font-size: .26rem;
+    float:left;
+    width:100%;
+    z-index: 222;
+    height:.7rem;
+    background: #fff;
+    cursor: pointer;
+}
+.I{
+    display:block;
+    position: absolute;
+    left:.23rem;
+    top:0.2rem;
+    color:#fff;
+    width:.32rem;
+    height:.32rem;
+    background: #b52121;
+    border-radius: .32rem;
+    text-align: center;
+    line-height:.34rem;
+}
+.right{
+    display:block;
+    width:.15rem;
+    height:.3rem;
+    position: absolute;
+    right:.35rem;
+    top:.23rem;
+}
+.add{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:1rem;
+    z-index:999;
+    background: #a3a3a3;
+}
+.addshop{
+    width:100%;
+    height:100%;
+    color:#fff;
+    text-align: center;
+    line-height: 1rem;
+    font-size: .3rem;
+    margin:.05rem auto 0;
+    background:#FF5000;
+}
+.vux-slider > .vux-indicator, .vux-slider .vux-indicator-right{
+    bottom:-52px;
+}
