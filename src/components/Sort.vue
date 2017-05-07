@@ -4,7 +4,7 @@
       <div @click='history.back(-1);' class='left'><i class="zmdi zmdi-arrow-left zmdi-hc-fw"></i></div>商品分类
     </div>
     <div style='-webkit-box-flex:1;position:relative;overflow: scroll;'>
-      <grid :rows="2">
+      <grid :rows="3">
         <grid-item :label="i.className" v-for="i in classes" :key="i.classID" @click.native='skip(i.classID)'>
           <img slot="icon" :src="img">
         </grid-item>
