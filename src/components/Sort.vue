@@ -33,6 +33,7 @@
   import { Badge, Group, Cell, Divider, Grid, GridItem } from 'vux';
   import Logo from '../assets/logo.png';
   import router from '../router.js';
+  import axios from 'axios';
 
   export default {
     components: {
@@ -45,9 +46,11 @@
     },
     created() {
       this.url = this.$route.path;
-      this.$http.get('http://datainfo.duapp.com/shopdata/getclass.php').then(res => {
-        console.log(res.body)
-        this.classes = res.body
+      axios({
+        url:'http://datainfo.duapp.com/shopdata/getclass.php'
+      }).then(res => {
+        console.log(res)
+        this.classes = res.data
       })
     },
     data() {

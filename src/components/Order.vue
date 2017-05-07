@@ -33,6 +33,7 @@
 <script>
     import router from '../router.js';
     import { Tab, TabItem, Swiper, SwiperItem } from 'vux';
+    import axios from 'axios';
 
     export default {
         components: {
@@ -42,8 +43,11 @@
             SwiperItem
         },
         created() {
-            this.$http.post('http://datainfo.duapp.com/shopdata/getCar.php', { userID: sessionStorage.getItem('username') }, { emulateJSON: true }).then(res => {
-                var ress = eval(res.body)
+            axios({
+                url: 'http://datainfo.duapp.com/shopdata/getCar.php',
+                params: { userID: sessionStorage.getItem('username') }
+            }).then(res => {
+                var ress = eval(res.data)
             })
             const callback = (ress) => {
                 console.log(ress)
@@ -69,8 +73,8 @@
 </script>
 
 <style>
-    .vux-swiper{
-        height:auto !important;
-        -webkit-box-flex:1;
+    .vux-swiper {
+        height: auto !important;
+        -webkit-box-flex: 1;
     }
 </style>

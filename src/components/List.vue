@@ -19,10 +19,20 @@
 
 <script>
     import router from '../router.js';
+    import axios from 'axios';
+
     export default {
         created() {
-            this.$http.post('http://datainfo.duapp.com/shopdata/getGoods.php', { classID: this.$route.params.id }, { emulateJSON: true }).then(res => {
-                var ress = eval(res.body)
+            axios({
+                methods:'post',
+                url: 'http://datainfo.duapp.com/shopdata/getGoods.php',
+                params: {
+                    classID: this.$route.params.id
+                }
+            }
+            ).then(res => {
+                console.log(res)
+                var ress = eval(res.data)
             })
             const callback = (ress) => {
                 console.log(ress)
@@ -38,7 +48,7 @@
             back() {
                 router.go(-1)
             },
-            skip(id){
+            skip(id) {
                 router.push(`/detail/${id}`)
             }
         }

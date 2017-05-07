@@ -13,7 +13,7 @@
 
 <script>
     import { XInput, Group,XButton } from 'vux';
-    import $ from 'jquery';
+    import axios from 'axios';
 
     export default {
         components: {
@@ -29,15 +29,12 @@
         },
         methods: {
             register(e) {
-                $.ajax({
+                axios({
                     url: 'http://datainfo.duapp.com/shopdata/userinfo.php',
-                    data: {
+                    params: {
                         status: "register",
                         userID:this.userId,
                         password:this.password
-                    },
-                    success(res){
-                        console.log(res)
                     }
                 })
             }

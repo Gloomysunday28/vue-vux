@@ -5,8 +5,10 @@ import FastClick from 'fastclick'
 import App from './App'
 import router from './router.js'
 import VueResource from 'vue-resource'
+import Axios from 'axios';
 
-Vue.use(VueResource);
+Vue.prototype.$http = Axios
+// Vue.use(VueResource);
 
 FastClick.attach(document.body)
 

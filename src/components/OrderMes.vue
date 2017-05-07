@@ -39,6 +39,7 @@
 <script>
     import router from '../router.js';
     import Logo from '../assets/logo.png';
+    import axios from 'axios';
 
     export default {
         data() {
@@ -54,8 +55,11 @@
         },
         created() {
             this.img = Logo;
-            this.$http.post('http://datainfo.duapp.com/shopdata/getGoods.php', { goodsID: this.$route.params.id }, { emulateJSON: true }).then(res => {
-                var ress = eval(res.body);
+            axios({
+                url:'http://datainfo.duapp.com/shopdata/getGoods.php', 
+                params:{ goodsID: this.$route.params.id }
+            }).then(res => {
+                var ress = eval(res.data);
             })
             const callback = (ress) => {
                 this.items = ress[0];

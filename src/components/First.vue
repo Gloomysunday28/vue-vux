@@ -89,6 +89,7 @@
 <script>
     import { Swiper, Flexbox, FlexboxItem, XButton, SwiperItem, Divider } from 'vux'
     import $ from 'jquery';
+    import axios from 'axios';
     import router from '../router.js';
 
     const baseList = [{
@@ -123,13 +124,13 @@
         created() {
             this.url = this.$route.path;
             const https = () => {
-                return this.$http.get('http://datainfo.duapp.com/shopdata/getGoods.php')
+                return axios({url:'http://datainfo.duapp.com/shopdata/getGoods.php'})
             }
 
             const user = async () => {
                 const a = await https();
-                eval(a.body)
-                var res = a.body;
+                eval(a.data)
+                var res = a.data;
             }
 
             user();

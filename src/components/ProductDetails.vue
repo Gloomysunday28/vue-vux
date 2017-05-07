@@ -26,7 +26,7 @@
     import $ from 'jquery';
     import { XHeader, Swiper, SwiperItem, Alert } from 'vux';
     import router from '../router.js';
-
+    import axios from 'axios';
 
     export default {
         components: {
@@ -37,20 +37,20 @@
         },
         created() {
             const self = this;
-            $.ajax({
+            axios({
                 url: 'http://datainfo.duapp.com/shopdata/getGoods.php',
                 type: 'post',
                 dataType: 'jsonp',
-                data: {
+                params: {
                     goodsID: self.$route.params.id
-                },
-                success(res) {
-                    var obj = res[0];
-                    self.items.push({ img: obj.goodsListImg });
-                    self.obj = obj;
-                    
                 }
+            }).then(res => {
+                var obj = eval(res.data);
             })
+            const callback = (obj) => {
+                self.items.push({ img: obj[0].goodsListImg });
+                self.obj = obj[0];
+            }
         },
         data() {
             return {
@@ -58,7 +58,7 @@
                 items: [],
                 obj: {},
                 show: false,
-                json:{ "userID": sessionStorage.getItem('username'), "goodsID": this.$route.params.id, "number": 1}
+                json: { "userID": sessionStorage.getItem('username'), "goodsID": this.$route.params.id, "number": 1 }
             }
         },
         methods: {
@@ -69,9 +69,13 @@
                 router.go(-1)
             },
             change() {
-                this.$http.post('http://datainfo.duapp.com/shopdata/updatecar.php',this.json,{emulateJSON:true}).then(res => {
+                axios({
+                    url: 'http://datainfo.duapp.com/shopdata/updatecar.php',
+                    params: this.json
+                }
+                ).then(res => {
                     this.show = !this.show;
-                    console.log(res.body)      
+                    console.log(res.data)
                 }, (err) => {
                     console.log(err)
                 })
@@ -83,6 +87,7 @@
 
 <style>
     /*@import '../assets/back/iconfont.css';*/
+    
     .vux-slider > .vux-swiper > .vux-swiper-item > a > .vux-img {
         background-size: contain !important;
     }

@@ -56,6 +56,7 @@
     import $ from 'jquery';
     import Delete from '../assets/删除.png';
     import { Actionsheet } from 'vux';
+    import axios from 'axios';
 
     export default {
         components: {
@@ -85,10 +86,14 @@
             }
             console.log(this.show)
             const _this = this;
-            this.$http.post("http://datainfo.duapp.com/shopdata/getCar.php", { userID: sessionStorage.getItem('username') }, { emulateJSON: true }).then(res => {
-                console.log(res)
-                var res = eval(res.body)
+            axios({
+                url:"http://datainfo.duapp.com/shopdata/getCar.php",
+                params:{userID: sessionStorage.getItem('username')},
+                methods:'post'
+            }).then(res=>{
+                var res = eval(res.data)
             })
+           
             const callback = (res) => {
                 console.log(res)
                 _this.goods = res;
@@ -103,28 +108,35 @@
             },
             del(id, index) {
                 console.log(id)
-                this.$http.post("http://datainfo.duapp.com/shopdata/updatecar.php", { userID: sessionStorage.getItem('username'), goodsID: id, number: 0 }, { emulateJSON: true }).then(res => {
+                axios({
+                    url:"http://datainfo.duapp.com/shopdata/updatecar.php", 
+                    params:{ userID: sessionStorage.getItem('username'), goodsID: id, number: 0 }
+                }).then(res => {
                     this.goods.splice(index, 1);
                 })
             },
             plus(id, index) {
                 if (this.goods[index].number >= 99) this.goods[index].number = 99;
                 else this.goods[index].number = parseInt(this.goods[index].number) + 1;
-                this.$http.post("http://datainfo.duapp.com/shopdata/updatecar.php", { userID: sessionStorage.getItem('username'), goodsID: id, number: this.goods[index].number }, { emulateJSON: true }).then(res => {
-
+                axios({
+                    url:"http://datainfo.duapp.com/shopdata/updatecar.php", 
+                    params:{ userID: sessionStorage.getItem('username'), goodsID: id, number: this.goods[index].number }
                 })
             },
             reduces(id, index) {
                 if (this.goods[index].number <= 2) this.goods[index].number = 1;
                 else this.goods[index].number = parseInt(this.goods[index].number) - 1;
-                this.$http.post("http://datainfo.duapp.com/shopdata/updatecar.php", { userID: sessionStorage.getItem('username'), goodsID: id, number: this.goods[index].number }, { emulateJSON: true }).then(res => {
-
+                axios({
+                    url:"http://datainfo.duapp.com/shopdata/updatecar.php", 
+                    params:{ userID: sessionStorage.getItem('username'), goodsID: id, number: this.goods[index].number }
                 })
             },
             blurs(id, index) {
                 if (this.goods[index].number >= 99) this.goods[index].number = 99;
                 else if (this.goods[index].number <= 2) this.goods[index].number = 1;
-                this.$http.post("http://datainfo.duapp.com/shopdata/updatecar.php", { userID: sessionStorage.getItem('username'), goodsID: id, number: this.goods[index].number }, { emulateJSON: true }).then(res => {
+               axios({
+                   url:"http://datainfo.duapp.com/shopdata/updatecar.php", 
+                   params:{ userID: sessionStorage.getItem('username'), goodsID: id, number: this.goods[index].number }
                 })
             }
         }
