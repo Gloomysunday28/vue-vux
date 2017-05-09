@@ -22,7 +22,7 @@
 <script>
     import router from '../router.js';
     import { XAddress, ChinaAddressData, XInput, Group ,PopupPicker,XButton,Alert} from 'vux';
-
+    
     export default {
         components: {
             XAddress,

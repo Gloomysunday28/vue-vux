@@ -1,7 +1,8 @@
 <template>
     <div style="display: -webkit-box; -webkit-box-orient: vertical;height:100%;position:absolute;" class='first'>
         <div style="width:100%;text-align: center; background: orangered;color: #fff;height: 40px;">
-            <div style='width:100%;height:100%;'><div style='margin:6px auto;width:60%;height:70%;border-radius:10px;background: #fff;opacity: .5;margin-top:7px;'></div><i class='iconfont' style='position:absolute;left:80px;top:5px;font-size:.35rem;z-index:9;'>&#xe501;</i></div>
+            <div style='width:100%;height:100%;'>
+                <div style='margin:6px auto;width:60%;height:70%;border-radius:10px;background: #fff;opacity: .5;margin-top:7px;'></div><i class='iconfont' style='position:absolute;left:80px;top:5px;font-size:.35rem;z-index:9;'>&#xe501;</i></div>
         </div>
         <div style='-webkit-box-flex:1;position:relative;overflow: scroll;'>
             <swiper loop auto :list="demo06_list" :index="demo06_index" @on-index-change="demo06_onIndexChange" @click="click"></swiper>
@@ -54,8 +55,6 @@
                     <swiper-item>
                         <p>基本世神 兑换传奇世界H5畅玩级礼</p>
                     </swiper-item>
-
-                    
                 </swiper>
             </div>
             <divider style='float:left;margin-top:.2rem;'>猜你喜欢</divider>
@@ -68,6 +67,11 @@
                     </li>
                 </template>
             </ul>
+            <!--<child :text='text'></child>
+            <parent :text='text' :self='thiss'></parent>-->
+
+            <div @click='up'>children</div>
+            <parents @upup='change' :self='thiss' :text='text'></parents>
         </div>
         <div class='foot' style='font-size:.25rem;'>
             <router-link to="/" class="weui-tabbar__item weui-bar__item_on" :style=" url ==  '/' ? {color:'red'} :{color:''} ">
@@ -91,6 +95,7 @@
     import $ from 'jquery';
     import axios from 'axios';
     import router from '../router.js';
+    import { bus } from './Search';
 
     const baseList = [{
         img: 'https://static.vux.li/demo/1.jpg',
@@ -111,20 +116,65 @@
             Flexbox,
             FlexboxItem,
             XButton,
-            Divider
+            Divider,
+            child: {
+                props: ['text'],
+                data() {
+                    return {
+                        text1: this.$props.text
+                    }
+                },
+                template: "<div @click='up'>{{text}}</div>",
+                methods: {
+                    up() {
+                        bus.$emit('select', 1);
+                    }
+                }
+            },
+            parent: {
+                data() {
+                    return {
+                        text1: this.$props.text
+                    }
+                },
+                props: ['text', 'self'],
+                template: "<div>{{text}}</div>",
+                created() {
+                    bus.$on('select', (text) => {
+                        console.log(this)
+                        this.$props.self.text = 'sister';
+                    })
+                }
+            },
+            parents: {
+                props:['self','text'],
+                template: "<div>{{text}}</div>",
+                created(){
+                    bus.$on('upup',()=>{
+                        this.change();
+                    })
+                },
+                methods: {
+                    change(){
+                        this.$props.self.text = 'parents'
+                    }
+                }
+            }
         },
         data() {
             return {
                 demo06_list: urlList,
                 demo06_index: 0,
                 items: [],
-                url: ""
+                url: "",
+                text: "brother",
+                thiss: this
             }
         },
         created() {
             this.url = this.$route.path;
             const https = () => {
-                return axios({url:'http://datainfo.duapp.com/shopdata/getGoods.php'})
+                return axios({ url: 'http://datainfo.duapp.com/shopdata/getGoods.php' })
             }
 
             const user = async () => {
@@ -147,6 +197,12 @@
             },
             aa() {
                 $('.first').scrollTop(500);
+            },
+            up() {
+                bus.$emit('upup')
+            },
+            change() {
+                console.log(123)
             }
         }
     }
