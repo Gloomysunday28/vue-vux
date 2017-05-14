@@ -50,7 +50,6 @@
                 var ress = eval(res.data)
             })
             const callback = (ress) => {
-                console.log(ress)
                 this.list2 = ress;
             }
         },

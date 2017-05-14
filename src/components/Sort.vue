@@ -49,7 +49,6 @@
       axios({
         url:'http://datainfo.duapp.com/shopdata/getclass.php'
       }).then(res => {
-        console.log(res)
         this.classes = res.data
       })
     },

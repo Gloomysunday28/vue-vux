@@ -10,6 +10,7 @@
     import { XInput } from 'vux';
     import $ from 'jquery';
     import router from '../router.js';
+    import axios from 'axios';
 
     export default {
         components: {
@@ -36,6 +37,8 @@
                         sessionStorage.setItem('username', _this.id);
                         sessionStorage.setItem('pass', _this.pas);
                         router.push('/')
+                    }else if(res.data === 2){
+                        alert('账号或密码错误')
                     }
                 })
             }

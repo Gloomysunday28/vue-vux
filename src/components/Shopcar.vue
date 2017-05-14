@@ -84,7 +84,6 @@
             if (sessionStorage.getItem('username')) {
                 this.show = true;
             }
-            console.log(this.show)
             const _this = this;
             axios({
                 url:"http://datainfo.duapp.com/shopdata/getCar.php",
@@ -95,19 +94,16 @@
             })
            
             const callback = (res) => {
-                console.log(res)
                 _this.goods = res;
             }
         },
         methods: {
             clicps(id, index) {
-                console.log(id)
                 this.id = id;
                 this.index = index;
                 this.show2 = true;
             },
             del(id, index) {
-                console.log(id)
                 axios({
                     url:"http://datainfo.duapp.com/shopdata/updatecar.php", 
                     params:{ userID: sessionStorage.getItem('username'), goodsID: id, number: 0 }
@@ -144,7 +140,7 @@
 
 </script>
 
-<style>
+<style scoped>
     @import '../assets/all/iconfont.css';
     .list-leave-active {
         transition: all 1s;

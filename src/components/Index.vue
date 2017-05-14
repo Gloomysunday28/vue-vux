@@ -29,7 +29,7 @@
                 router.push('hello')
             },
             onCancel() {
-                console.log('on cancel')
+       
             }
         },
         data() {

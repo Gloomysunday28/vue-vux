@@ -141,7 +141,6 @@
                 template: "<div>{{text}}</div>",
                 created() {
                     bus.$on('select', (text) => {
-                        console.log(this)
                         this.$props.self.text = 'sister';
                     })
                 }
@@ -202,7 +201,6 @@
                 bus.$emit('upup')
             },
             change() {
-                console.log(123)
             }
         }
     }

@@ -63,7 +63,6 @@
             })
             const callback = (ress) => {
                 this.items = ress[0];
-                console.log(ress)
             }
         }
     }

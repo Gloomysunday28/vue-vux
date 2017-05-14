@@ -75,9 +75,7 @@
                 }
                 ).then(res => {
                     this.show = !this.show;
-                    console.log(res.data)
                 }, (err) => {
-                    console.log(err)
                 })
             }
         }
