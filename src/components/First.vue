@@ -70,8 +70,8 @@
             <!--<child :text='text'></child>
             <parent :text='text' :self='thiss'></parent>-->
 
-            <div @click='up'>children</div>
-            <parents @upup='change' :self='thiss' :text='text'></parents>
+            <!--<div @click='up'>children</div>
+            <parents @upup='change' :self='thiss' :text='text'></parents>-->
         </div>
         <div class='foot' style='font-size:.25rem;'>
             <router-link to="/" class="weui-tabbar__item weui-bar__item_on" :style=" url ==  '/' ? {color:'red'} :{color:''} ">

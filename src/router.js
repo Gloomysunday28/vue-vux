@@ -13,51 +13,55 @@ import Address from './components/Address';
 import List from './components/List';
 import Order from './components/Order';
 import OrderMes from './components/OrderMes';
+import Parent from './components/Parent';
 
 Vue.use(VueRouter)
 
 const routes = [{
   path: '/',
-  component: Index,
+  component: resolve => require(['./components/Index'], resolve),
   children: [{
     path: '',
-    component: IndexContent,
+    component: resolve => require(['./components/First.vue'], resolve)
   }, {
     path: 'sort',
-    component: Sort,
+    component: resolve => require(['./components/Sort'], resolve)
   }, {
     path: 'person',
-    component: Person,
+    component: resolve => require(['./components/Person'], resolve),
   }, {
     path: 'shopcar',
-    component: Shopcar
+    component: resolve => require(['./components/Shopcar'], resolve),
   }
   ]
 }, {
   path: '/detail/:id',
-  component: Detail
+  component: resolve => require(['./components/ProductDetails'], resolve),
 }, {
   path: '/register',
-  component: Register
+  component: resolve => require(['./components/Register'], resolve),
 }, {
   path: '/login',
-  component: Login
-},{
-    path:'/set',
-    component:Set
-  },{
-    path:'/address',
-    component:Address
-  },{
-    path:'/list/:id',
-    component:List
-  },{
-    path:'/order',
-    component:Order
-  },{
-    path:'/order/:id',
-    component:OrderMes
-  }
+  component: resolve => require(['./components/Login'], resolve),
+}, {
+  path: '/set',
+  component: resolve => require(['./components/Set'], resolve),
+}, {
+  path: '/address',
+  component: resolve => require(['./components/Address'], resolve),
+}, {
+  path: '/list/:id',
+  component: resolve => require(['./components/List'], resolve),
+}, {
+  path: '/order',
+  component: resolve => require(['./components/Order'], resolve),
+}, {
+  path: '/order/:id',
+  component: resolve => require(['./components/OrderMes'], resolve),
+}, {
+  path: "/parent",
+  component: resolve => require(['./components/Parent'], resolve),
+}
 ]
 
 const router = new VueRouter({
