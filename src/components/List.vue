@@ -4,6 +4,9 @@
             <div style='position: absolute;left:.2rem;font-size:.25rem;top:2px;' @click='back()'><i class="iconfont">&#xf0292;</i>返回</div>商品列表
         </div>
         <div style='-webkit-box-flex:1;'>
+            <p style="text-align:center;" v-if='xShow'>
+                <inline-loading></inline-loading>正在加载
+            </p> 
             <li data-id='"+result[i].goodsID+"' v-for='item in datas' class='goods' @click='skip(item.goodsID)'>
                 <a href='javascript:;'><img :src=item.goodsListImg class='goodimg' />
                     <div class='instroduce'>
@@ -20,8 +23,18 @@
 <script>
     import router from '../router.js';
     import axios from 'axios';
+    import {InlineLoading} from 'vux';
 
     export default {
+        components:{
+            InlineLoading
+        },
+        data() {
+            return {
+                datas: [],
+                xShow:true
+            }
+        },
         created() {
             axios({
                 methods:'post',
@@ -35,13 +48,10 @@
             })
             const callback = (ress) => {
                 this.datas = ress;
+                this.xShow = false;
             }
         },
-        data() {
-            return {
-                datas: []
-            }
-        },
+        
         methods: {
             back() {
                 router.go(-1)

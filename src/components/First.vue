@@ -58,7 +58,10 @@
                 </swiper>
             </div>
             <divider style='float:left;margin-top:.2rem;'>猜你喜欢</divider>
-            <ul class='prod'>
+            <p style="text-align:center;" v-if='show'>
+                <inline-loading></inline-loading>正在加载
+            </p>   
+            <ul class='prod' v-else='show'>
                 <template v-for="(item,key,index) in items">
                     <li :data-id=item.goodsID :key="item.goodsID" :index='key' @click="click(item.goodsID)">
                         <div><img :src="item.goodsListImg" alt=""></div>
@@ -91,7 +94,7 @@
 </template>
 
 <script>
-    import { Swiper, Flexbox, FlexboxItem, XButton, SwiperItem, Divider } from 'vux'
+    import { Swiper, Flexbox, FlexboxItem, XButton, SwiperItem, Divider,InlineLoading   } from 'vux'
     import $ from 'jquery';
     import axios from 'axios';
     import router from '../router.js';
@@ -117,6 +120,7 @@
             FlexboxItem,
             XButton,
             Divider,
+            InlineLoading , 
             child: {
                 props: ['text'],
                 data() {
@@ -167,7 +171,8 @@
                 items: [],
                 url: "",
                 text: "brother",
-                thiss: this
+                thiss: this,
+                show:true
             }
         },
         created() {
@@ -185,6 +190,7 @@
             user();
             const callback = (res) => {
                 this.items = res
+                this.show = false;
             }
         },
         methods: {

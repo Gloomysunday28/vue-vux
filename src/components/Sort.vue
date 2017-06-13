@@ -4,7 +4,10 @@
       <div @click='history.back(-1);' class='left'><i class="zmdi zmdi-arrow-left zmdi-hc-fw"></i></div>商品分类
     </div>
     <div style='-webkit-box-flex:1;position:relative;overflow: scroll;'>
-      <grid :rows="3">
+      <p style="text-align:center;" v-if='show'>
+        <inline-loading></inline-loading>正在加载
+      </p>  
+      <grid :rows="3" v-else='show'>
         <grid-item :label="i.className" v-for="i in classes" :key="i.classID" @click.native='skip(i.classID)'>
           <img slot="icon" :src="img">
         </grid-item>
@@ -30,7 +33,7 @@
 </template>
 
 <script>
-  import { Badge, Group, Cell, Divider, Grid, GridItem } from 'vux';
+  import { Badge, Group, Cell, Divider, Grid, GridItem,InlineLoading} from 'vux';
   import Logo from '../assets/logo.png';
   import router from '../router.js';
   import axios from 'axios';
@@ -42,7 +45,8 @@
       Cell,
       Divider,
       Grid,
-      GridItem
+      GridItem,
+      InlineLoading
     },
     created() {
       this.url = this.$route.path;
@@ -50,13 +54,15 @@
         url:'http://datainfo.duapp.com/shopdata/getclass.php'
       }).then(res => {
         this.classes = res.data
+        this.show = false;
       })
     },
     data() {
       return {
         url: "",
         img:Logo,
-        classes: []
+        classes: [],
+        show:true
       }
     },
     methods:{

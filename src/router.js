@@ -13,7 +13,6 @@ import Address from './components/Address';
 import List from './components/List';
 import Order from './components/Order';
 import OrderMes from './components/OrderMes';
-import Parent from './components/Parent';
 
 Vue.use(VueRouter)
 
@@ -58,9 +57,6 @@ const routes = [{
 }, {
   path: '/order/:id',
   component: resolve => require(['./components/OrderMes'], resolve),
-}, {
-  path: "/parent",
-  component: resolve => require(['./components/Parent'], resolve),
 }
 ]
 

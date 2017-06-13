@@ -6,9 +6,12 @@
         <div style='-webkit-box-flex:1;position:relative;overflow: scroll;display: -webkit-box;-webkit-box-orient:vertical;'>
             <div class='shopList' v-if='show'>
                 <div id='scroller'>
-                    <ul class='shopListcon' style='text-align: left;'>
-                        <transition-group name='list'>
-                            <template v-for='(item,index) in goods'>
+                    <p style="text-align:center;" v-if='xShow'>
+                        <inline-loading></inline-loading>正在加载
+                    </p> 
+                    <ul class='shopListcon' style='text-align: left;' v-else='xShow'>                            
+                        <transition-group name='list' >                            
+                            <template v-for='(item,index) in goods' >
                                 <div class='shopcon' v-bind:key="item.goodsID">
                                     <li>
                                         <div class='shopimg'><img :src=item.goodsListImg alt='' class='img'></div>
@@ -24,6 +27,7 @@
                                     </li>
                                 </div>
                             </template>
+                           
                         </transition-group>
                     </ul>
                 </div>
@@ -55,15 +59,17 @@
 <script>
     import $ from 'jquery';
     import Delete from '../assets/删除.png';
-    import { Actionsheet } from 'vux';
+    import { Actionsheet ,InlineLoading} from 'vux';
     import axios from 'axios';
 
     export default {
         components: {
-            Actionsheet
+            Actionsheet,
+            InlineLoading
         },
         data() {
             return {
+                xShow:true,
                 goods: [],
                 show2: false,
                 delet: Delete,
@@ -95,6 +101,7 @@
            
             const callback = (res) => {
                 _this.goods = res;
+                this.xShow=false;
             }
         },
         methods: {
