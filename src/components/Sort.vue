@@ -13,7 +13,7 @@
         </grid-item>
       </grid>
       <divider style='font-size:.25rem;'>没有更多了</divider>
-      
+      <div ref="div">32131</div>
     </div>
     <div class='foot' style='font-size:.25rem;'>
       <router-link to="/" class="weui-tabbar__item weui-bar__item_on" :style=" url ==  '/' ? {color:'red'} :{color:''} ">
@@ -56,6 +56,10 @@
         this.classes = res.data
         this.show = false;
       })
+    },
+    mounted(){
+       console.log(this.$refs.div)
+      this.$refs.div.style.color='red'
     },
     data() {
       return {
